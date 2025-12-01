@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Your Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .featured-property {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin: -50px auto 50px;
+            max-width: 1100px;
+            overflow: hidden;
+        }
+
+        .property-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        .property-details {
+            padding: 30px;
+        }
+
+        .property-details h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+
+        .property-specs {
+            display: flex;
+            gap: 30px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .spec {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .spec::before {
+            content: '✓';
+            background: #667eea;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .property-description {
+            margin: 20px 0;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .section {
+            margin: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #333;
+        }
+
+        .agents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .agent-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .agent-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .agent-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            font-weight: bold;
+        }
+
+        .agent-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .agent-card p {
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .benefit-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(102,126,234,0.3);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .blog-content {
+            padding: 25px;
+        }
+
+        .blog-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .blog-card p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 80px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .property-specs {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Find Your Home</h1>
+        <p>Discover the best properties for sale and rent</p>
+    </div>
+
+    <div class="featured-property">
+        <div class="property-image">Luxury Villa</div>
+        <div class="property-details">
+            <h2>Stunning Miami Luxury Villa</h2>
+            <div class="property-specs">
+                <div class="spec">5 Bedrooms</div>
+                <div class="spec">4 Bathrooms</div>
+                <div class="spec">Private Pool</div>
+                <div class="spec">Ocean Views</div>
+            </div>
+            <p class="property-description">
+                Experience the ultimate in luxury living with this stunning villa featuring 5 bedrooms, 4 bathrooms, a private pool, and breathtaking ocean views. Located in the heart of Miami, close to top schools and amenities.
+            </p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h2 class="section-title">Meet Our Expert Agents</h2>
+            <div class="agents-grid">
+                <div class="agent-card">
+                    <div class="agent-avatar">JD</div>
+                    <h3>John Davis</h3>
+                    <p>10+ years of experience in luxury properties.</p>
+                    <p><strong>Expert in:</strong> Luxury Properties</p>
+                </div>
+                <div class="agent-card">
+                    <div class="agent-avatar">SM</div>
+                    <h3>Sarah Miller</h3>
+                    <p>Expert in family homes and apartments.</p>
+                    <p><strong>Specialist:</strong> Family Homes</p>
+                </div>
+                <div class="agent-card">
+                    <div class="agent-avatar">MJ</div>
+                    <h3>Michael Johnson</h3>
+                    <p>Specialist in commercial and investment properties.</p>
+                    <p><strong>Focus:</strong> Commercial Properties</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Why Choose Us</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">✓</div>
+                    <h3>Certified Agents</h3>
+                    <p>Our agents are certified and highly experienced.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">24/7</div>
+                    <h3>24/7 Support</h3>
+                    <p>We are always available to assist you.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🏠</div>
+                    <h3>Best Properties</h3>
+                    <p>Find properties that match your needs and budget.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">💰</div>
+                    <h3>Best Prices</h3>
+                    <p>Get the best prices and exclusive offers.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Latest Insights</h2>
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-image">📚</div>
+                    <div class="blog-content">
+                        <h3>Home Buying Guide</h3>
+                        <p>Learn how to navigate the real estate market and find your dream home with our expert tips.</p>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-image">🏡</div>
+                    <div class="blog-content">
+                        <h3>Property Marketing Tips</h3>
+                        <p>Discover the secrets to making your property stand out and attract more buyers.</p>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <div class="blog-image">💵</div>
+                    <div class="blog-content">
+                        <h3>Mortgage Rate Insights</h3>
+                        <p>Get the latest insights on mortgage rates and how they affect your buying power.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Find Your Home. All rights reserved.</p>
+    </div>
+</body>
+</html>
+```
